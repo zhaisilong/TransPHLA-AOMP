@@ -2,7 +2,6 @@ import pandas as pd
 import zipfile
 import os
 import logging
-from logging import handlers
 
 def HLA_Label_Length_Position_AA_peptides(data, hla, label, length, posi, aa):
     posi -= 1
