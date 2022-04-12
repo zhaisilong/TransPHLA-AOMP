@@ -53,3 +53,5 @@ pHLAIformer_simple_requirements.txt is a simplified version of the dependency pa
 - output_attention, type = bool, default = True, help = Output the mutual influence of peptide and HLA on the binding?
 - output_heatmap: type = bool, default = True, help = Visualize the mutual influence of peptide and HLA on the binding?
 - output_mutation: type = bool, default = True, help = Whether to perform mutations with better affinity for each sample?
+
+test
