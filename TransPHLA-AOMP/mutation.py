@@ -38,7 +38,7 @@ def HLA_length_aatype_position_num(hla = False, length = 9, label = None):
     elif label == 1:
         new_label = 'positive'
     elif label == 0:
-        new_label == 'negative'
+        new_label = 'negative'
     
     try:
         aatype_position = np.load('./Attention/peptideAAtype_peptidePosition/{}_Length{}.npy'.format(hla, length),
@@ -52,9 +52,9 @@ def HLA_length_aatype_position_num(hla = False, length = 9, label = None):
                                   allow_pickle = True).item()[length][new_label]
         aatype_position_num = np.load('./Attention/peptideAAtype_peptidePosition_NUM/Allsamples_Alllengths_num.npy',
                                       allow_pickle = True).item()[length][new_label]
-    
-    aatype_position.loc['sum'] = aatype_position.sum(axis = 0)
-    aatype_position['sum'] = aatype_position.sum(axis = 1)
+
+    aatype_position.loc['sum'] = aatype_position.sum(axis=0)
+    aatype_position['sum'] = aatype_position.sum(axis=1)
     
     return aatype_position, aatype_position_num
 

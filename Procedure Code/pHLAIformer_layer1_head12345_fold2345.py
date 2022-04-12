@@ -183,7 +183,7 @@ class PoswiseFeedForwardNet(nn.Module):
     def __init__(self):
         super(PoswiseFeedForwardNet, self).__init__()
         self.use_cuda = use_cuda
-        device = torch.device("cuda" if self.use_cuda else "cpu")
+        self.device = torch.device("cuda" if self.use_cuda else "cpu")
         self.fc = nn.Sequential(
             nn.Linear(d_model, d_ff, bias=False),
             nn.ReLU(),
@@ -194,8 +194,8 @@ class PoswiseFeedForwardNet(nn.Module):
         inputs: [batch_size, seq_len, d_model]
         '''
         residual = inputs
-        output = self.fc(inputs)
-        return nn.LayerNorm(d_model).to(device)(output + residual) # [batch_size, seq_len, d_model]
+        output = self.fc(inputs)  # Feature optimization block
+        return nn.LayerNorm(d_model).to(self.device)(output + residual) # [batch_size, seq_len, d_model]
 
 
 # In[19]:
@@ -309,7 +309,7 @@ class Transformer(nn.Module):
         super(Transformer, self).__init__()
         self.use_cuda = use_cuda
         device = torch.device("cuda" if use_cuda else "cpu")
-        self.pep_encoder = Encoder().to(device)
+        self.   pep_encoder = Encoder().to(device)
         self.hla_encoder = Encoder().to(device)
         self.decoder = Decoder().to(device)
         self.tgt_len = tgt_len
